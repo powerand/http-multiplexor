@@ -14,6 +14,7 @@ import (
 	"time"
 )
 
+const ServerPort = 62985
 const FetchURLTimeOut = 1 * time.Second
 const MaxSimultaneousRequests = 100
 const MaxURLs = 20
@@ -94,7 +95,7 @@ func main() {
 		}
 	})
 
-	server := &http.Server{Addr: ":62985"}
+	server := &http.Server{Addr: fmt.Sprintf(":%d", ServerPort)}
 	go func() {
 		err := server.ListenAndServe()
 		if err != nil && err.Error() == "http: Server closed" {
